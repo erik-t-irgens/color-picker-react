@@ -4,32 +4,27 @@ import PropTypes from "prop-types";
 
 function ColorPicker(props) {
 
-  // state { myStyles: {height:, width,} }
-
-  // method to change this state
-  // I would only call those methods, or reference this state WITHIN THIS COMPONENT ONLY
-
   return (
     <React.Fragment>
-      <div >
-        {props.availableColors.map((color) =>
-          <div
-            style={{
-              height: '20px', width: '20px', backgroundColor: color
-            }}
-            onClick={() => props.onColorChange(color)}
-          />
-        )}
-        <button onClick={props.onClearColor}>Clear Color!</button>
-      </div>
+      {props.availableColors.map((color) =>
+        <div
+          style={{
+            height: '20px', width: "20px", backgroundColor: color, cursor: "crosshair"
+          }}
+
+          onClick={() => props.onChangeCurrentActiveColor(color)}
+        />
+      )}
+      <button onClick={props.onClearCurrentActiveColor}>Clear current color</button>
+
     </React.Fragment>
   );
 }
 
 ColorPicker.propTypes = {
-  onColorChange: PropTypes.func,
-  onClearColor: PropTypes.func,
-  availableColors: PropTypes.array
+  availableColors: PropTypes.array,
+  onChangeCurrentActiveColor: PropTypes.func,
+  onClearCurrentActiveColor: PropTypes.func
 }
 
 export default ColorPicker;

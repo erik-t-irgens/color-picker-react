@@ -9,14 +9,12 @@ class ColorControl extends React.Component {
     super(props);
     this.state = {
       masterColorList: ["red", "green", "blue", "white", "yellow", "purple", "gray", "black"],
-      currentColor: null
+      currentColor: null // I need a function to change this color using some sort of color picker
     };
   }
 
   handleChangeCurrentActiveColor = (newColor) => {
-    this.setState({
-      currentColor: newColor
-    })
+    this.setState({ currentColor: newColor });
   }
 
   handleClearCurrentActiveColor = () => {
@@ -35,15 +33,13 @@ class ColorControl extends React.Component {
     return (
       <React.Fragment>
         <ColorPanel defaultColor="blue" mixingColor={currentColor} />
-        <ColorPanel defaultColor="yellow" mixingColor={currentColor} />
+        <ColorPanel defaultColor="green" mixingColor={currentColor} />
         <ColorPanel defaultColor="red" mixingColor={currentColor} />
-        <ColorPanel defaultColor="purple" mixingColor={currentColor} />
-        <ColorPanel defaultColor="gray" mixingColor={currentColor} />
 
 
-        <ColorPicker availableColors={masterColorList} onColorChange={this.handleChangeCurrentActiveColor} onClearColor={this.handleClearCurrentActiveColor} />
+        <ColorPicker availableColors={masterColorList} onChangeCurrentActiveColor={this.handleChangeCurrentActiveColor}
+          onClearCurrentActiveColor={this.handleClearCurrentActiveColor} />
 
-        <ImagePanel filterColor={currentColor} />
 
       </React.Fragment>
     );
